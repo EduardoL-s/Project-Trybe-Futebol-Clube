@@ -1,8 +1,13 @@
-import TeamModel from 'src/database/models/TeamModel';
+import TeamModel from '../database/models/TeamModel';
 
 async function getAll() {
-  const teams = await TeamModel.getAll();
+  const teams = await TeamModel.findAll();
   return teams;
 }
 
-export default { getAll };
+async function findById(id: number) {
+  const team = await TeamModel.findOne({ where: { id } });
+  return team;
+}
+
+export default { getAll, findById };
