@@ -13,7 +13,7 @@ TeamModel.init({
     autoIncrement: true,
     type: DataTypes.INTEGER,
   },
-  team_name: {
+  teamName: {
     allowNull: false,
     type: DataTypes.STRING,
   },
