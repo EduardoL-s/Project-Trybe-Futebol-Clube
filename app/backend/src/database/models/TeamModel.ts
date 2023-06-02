@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '.';
+import db from '.';
 
 class TeamModel extends Model {
   declare id: number;
@@ -19,7 +19,7 @@ TeamModel.init({
   },
 }, {
   tableName: 'teams',
-  sequelize,
+  sequelize: db,
   underscored: true,
   timestamps: false,
 });
