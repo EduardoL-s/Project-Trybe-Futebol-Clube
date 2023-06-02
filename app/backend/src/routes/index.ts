@@ -1,3 +1,3 @@
-import TeamsRouter from "./TeamsRouter";
+import TeamsRouter from './TeamsRouter';
 
-export { TeamsRouter };
+export default { TeamsRouter };
