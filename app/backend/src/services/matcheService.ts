@@ -51,4 +51,21 @@ async function updatedMatch(id: number, homeTeamGoals: number, awayTeamGoals: nu
   return match;
 }
 
-export default { getAll, finishedMatch, updatedMatch };
+async function createNewMatch(
+  homeTeamId: number,
+  awayTeamId: number,
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+) {
+  const newMatch = await MatchesModel.create({
+    homeTeamId,
+    homeTeamGoals,
+    awayTeamId,
+    awayTeamGoals,
+    inProgress: true,
+  });
+
+  return newMatch;
+}
+
+export default { getAll, finishedMatch, updatedMatch, createNewMatch };

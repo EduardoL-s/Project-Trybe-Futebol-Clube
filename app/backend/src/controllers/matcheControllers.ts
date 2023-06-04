@@ -21,4 +21,16 @@ async function updatedMatch(req: Request, res: Response) {
   return res.status(200).json(result);
 }
 
-export default { getAll, finishMatch, updatedMatch };
+async function createMatch(req: Request, res: Response) {
+  const { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals } = req.body;
+  const result = await matcheService.createNewMatch(
+    homeTeamId,
+    awayTeamId,
+    homeTeamGoals,
+    awayTeamGoals,
+  );
+
+  return res.status(201).json(result);
+}
+
+export default { getAll, finishMatch, updatedMatch, createMatch };
