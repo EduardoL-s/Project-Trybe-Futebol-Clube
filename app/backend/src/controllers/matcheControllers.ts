@@ -8,4 +8,10 @@ async function getAll(req: Request, res: Response) {
   return res.status(200).json(result);
 }
 
-export default { getAll };
+async function finishMatch(req: Request, res: Response) {
+  const { id } = req.params;
+  await matcheService.finishedMatch(+id);
+  return res.status(200).json({ message: 'Finished' });
+}
+
+export default { getAll, finishMatch };

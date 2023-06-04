@@ -29,4 +29,14 @@ async function getAll(inProgress: string) {
   return matches;
 }
 
-export default { getAll };
+async function finishedMatch(id: number) {
+  const match = await MatchesModel.findByPk(id);
+
+  if (match) {
+    // solução para utilização do patch encontrado em: https://sequelize.org/docs/v6/core-concepts/model-instances/
+    match.inProgress = false;
+    await match.save();
+  }
+}
+
+export default { getAll, finishedMatch };
