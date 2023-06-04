@@ -39,4 +39,16 @@ async function finishedMatch(id: number) {
   }
 }
 
-export default { getAll, finishedMatch };
+async function updatedMatch(id: number, homeTeamGoals: number, awayTeamGoals: number) {
+  const match = await MatchesModel.findByPk(id);
+
+  if (match) {
+    match.homeTeamGoals = homeTeamGoals;
+    match.awayTeamGoals = awayTeamGoals;
+    match.save();
+  }
+
+  return match;
+}
+
+export default { getAll, finishedMatch, updatedMatch };
