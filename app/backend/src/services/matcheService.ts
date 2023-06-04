@@ -1,12 +1,30 @@
 import TeamModel from '../database/models/TeamModel';
 import MatchesModel from '../database/models/MatchesModel';
 
-async function getAll() {
+const includeTeam = [
+  { model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+  { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
+];
+
+async function getAll(inProgress: string) {
+  if (inProgress === 'true') {
+    const matchesInProgress = await MatchesModel.findAll({
+      where: { inProgress: true },
+      include: includeTeam,
+    });
+    return matchesInProgress;
+  }
+
+  if (inProgress === 'false') {
+    const matchesInProgress = await MatchesModel.findAll({
+      where: { inProgress: false },
+      include: includeTeam,
+    });
+    return matchesInProgress;
+  }
+
   const matches = await MatchesModel.findAll({
-    include: [
-      { model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
-      { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
-    ],
+    include: includeTeam,
   });
   return matches;
 }
