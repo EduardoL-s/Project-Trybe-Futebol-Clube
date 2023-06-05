@@ -19,6 +19,8 @@ function calculateTotalPoints(matches: matchForm[]) {
     return +0;
   });
 
+  // método para somar os elementos do array disponível em: https://horadecodar.com.br/como-somar-elementos-de-um-array-de-maneira-performaica/
+
   let total = 0;
 
   for (let i = 0; i < result.length; i += 1) {
@@ -79,7 +81,7 @@ function calculateTotalDraws(matches: matchForm[]) {
   return total;
 }
 
-function calculateTotalGoalsFavor(matches: matchForm[]) {
+function calculateGoalsFavor(matches: matchForm[]) {
   const result = matches.map((element) => element.homeTeamGoals);
 
   let total = 0;
@@ -91,7 +93,7 @@ function calculateTotalGoalsFavor(matches: matchForm[]) {
   return total;
 }
 
-function calculateTotalGoalsOwn(matches: matchForm[]) {
+function calculateGoalsOwn(matches: matchForm[]) {
   const result = matches.map((element) => element.awayTeamGoals);
 
   let total = 0;
@@ -103,11 +105,30 @@ function calculateTotalGoalsOwn(matches: matchForm[]) {
   return total;
 }
 
+function calculateGoalsBalance(matches: matchForm[]) {
+  const GP = calculateGoalsFavor(matches);
+  const GC = calculateGoalsOwn(matches);
+
+  return GP - GC;
+}
+
+function calculateEfficiency(matches: matchForm[]) {
+  const P = calculateTotalPoints(matches);
+  const J = matches.length;
+
+  const total = P / (J * 3);
+  const porcentagem = total * 100;
+
+  return porcentagem.toFixed(2);
+}
+
 export {
   calculateTotalPoints,
   calculateTotalVictories,
   calculateTotalLosses,
   calculateTotalDraws,
-  calculateTotalGoalsFavor,
-  calculateTotalGoalsOwn,
+  calculateGoalsFavor,
+  calculateGoalsOwn,
+  calculateGoalsBalance,
+  calculateEfficiency,
 };
