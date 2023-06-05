@@ -9,12 +9,18 @@ async function login(req: Request, res: Response) {
 }
 
 async function loginPage(req: Request, res: Response) {
-  const { authorization } = req.headers;
+  try {
+    const { authorization } = req.headers;
 
-  if (authorization) {
+    if (!authorization) {
+      return res.status(401).json({ message: 'Token not found' });
+    }
+
     const { role: cargo } = validateToken(authorization);
 
     return res.status(200).json({ role: cargo });
+  } catch (error) {
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
 }
 
