@@ -17,8 +17,8 @@ async function finishMatch(req: Request, res: Response) {
 async function updatedMatch(req: Request, res: Response) {
   const { id } = req.params;
   const { homeTeamGoals, awayTeamGoals } = req.body;
-  const result = await matcheService.updatedMatch(+id, homeTeamGoals, awayTeamGoals);
-  return res.status(200).json(result);
+  await matcheService.updatedMatch(+id, homeTeamGoals, awayTeamGoals);
+  return res.status(200).json({ message: 'Updated scoreboard' });
 }
 
 async function createMatch(req: Request, res: Response) {

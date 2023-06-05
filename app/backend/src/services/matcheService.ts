@@ -47,8 +47,6 @@ async function updatedMatch(id: number, homeTeamGoals: number, awayTeamGoals: nu
     match.awayTeamGoals = awayTeamGoals;
     match.save();
   }
-
-  return match;
 }
 
 async function createNewMatch(
