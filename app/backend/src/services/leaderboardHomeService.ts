@@ -9,7 +9,7 @@ import {
   calculateGoalsOwn,
   calculateGoalsBalance,
   calculateEfficiency,
-} from '../utils/leaderboardCalculates';
+} from '../utils/leaderboardHomeCalculates';
 
 async function allLeaderboards() {
   const matchesFinished = await MatchesModel.findAll({ where: { inProgress: false } });
